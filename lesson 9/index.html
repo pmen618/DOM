@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>JavaScript DOM Tutorials - Events</title>
+  </head>
+  <body>
+  	<div id="wrapper">
+	    <header>
+	    	<div id="page-banner">
+	    		<h1 class="title">Bookorama</h1>
+	    		<a href="#">Click here</a>
+          <p>Books for Ninjas</p>
+          <form id="search-books">
+            <input type="text" placeholder="Search books..." />
+          </form>
+	    	</div>
+	    </header>
+	    <div id="book-list">
+	    	<h2 class="title">Books to Read</h2>
+	    	<ul>
+	    		<li>
+	    			<span class="name">Name of the Wind</span>
+	    			<span class="delete">delete</span>
+	    		</li>
+	    		<li>
+	    			<span class="name">The Wise Man's Fear</span>
+	    			<span class="delete">delete</span>
+	    		</li>
+	    		<li>
+	    			<span class="name">Kafka on the Shore</span>
+	    			<span class="delete">delete</span>
+	    		</li>
+	    		<li>
+	    			<span class="name">The Master and the Margarita</span>
+	    			<span class="delete">delete</span>
+	    		</li>
+	    	</ul>
+	    </div>
+	    <form id="add-book">
+	    	<input type="text" placeholder="Add a book..." />
+	    	<button>Add</button>
+	    </form>
+
+    </div>
+   
+    <script type="text/javascript">
+	   const listItems = document.querySelectorAll('#book-list ul li');
+
+		Array.from(listItems).forEach(function(item){
+		  item.addEventListener('click', (e) => {
+
+		    const li = e.target.parentElement;
+		    console.log('child element to remove:', li);
+		    console.log('parent element to remove child from:', li.parentElement);
+		    li.parentNode.removeChild(li);
+		    // li.parenNode chinh la ul
+		    // => xoa the con (li) trong the me (ul)
+		  });
+		});
+
+		// prevent default behaviour
+
+		const link = document.querySelector('#page-banner a');
+
+		link.addEventListener('click', function(e){
+		  e.preventDefault();
+		  console.log('Navigation to', e.target.textContent, 'was prevented');
+		});
+    </script>
+  </body>
+</html>
